@@ -64,9 +64,9 @@ function vva_change_password_logout_link ( $logout_link )
 	$admin_pages = yourls_list_plugin_admin_pages();
 	$change_password_url = $admin_pages[ 'change_password' ][ 'url' ];
 	
-	$logout_link = rtrim( $logout_link, ')' );
-	$logout_link .= sprintf( ' | <a href="%s">Change password</a>)', $change_password_url );
-	
+        $pos = strrpos( $logout_link, ')', 0 );
+        $logout_link = substr_replace( $logout_link, sprintf( ' | <a href="%s">Change password</a>', $change_password_url ), $pos, 0 );
+
 	return $logout_link;
 }
 
